@@ -1,0 +1,13 @@
+# Copy this file to backend.hcl (which is git-ignored) and fill in the values
+# printed by the terraform/bootstrap module's outputs.
+#
+#   cd ../bootstrap && terraform output
+#
+# The real backend.hcl is kept out of git because the bucket name contains your
+# AWS account ID.
+
+bucket         = "warden-tfstate-<ACCOUNT_ID>-us-east-1"
+key            = "environment/terraform.tfstate"
+region         = "us-east-1"
+dynamodb_table = "warden-tf-locks"
+encrypt        = true
