@@ -1,0 +1,46 @@
+# ---- Terraform ----
+# Never commit state: it contains resource metadata and can contain secrets.
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Local Terraform working dirs and plan output
+**/.terraform/*
+*.tfplan
+plan.out
+
+# Variable files may hold account IDs / secrets. Commit *.example only.
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# The dependency lock file SHOULD be committed — do not ignore it:
+# .terraform.lock.hcl
+
+# ---- Secrets & credentials ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pkr.hcl.json
+aws-credentials*
+credentials
+id_rsa*
+
+# ---- Python (agent, later milestones) ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
