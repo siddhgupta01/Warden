@@ -18,6 +18,11 @@ plan.out
 # The dependency lock file SHOULD be committed — do not ignore it:
 # .terraform.lock.hcl
 
+# Backend config holds the account-ID-bearing bucket name; commit only .example
+backend.hcl
+**/backend.hcl
+!**/backend.hcl.example
+
 # ---- Secrets & credentials ----
 .env
 .env.*
