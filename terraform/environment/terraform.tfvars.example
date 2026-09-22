@@ -1,0 +1,15 @@
+# Copy to terraform.tfvars (git-ignored) and adjust as needed. All values have
+# working defaults, so terraform.tfvars is optional. Its main use is setting
+# alarm_email without passing it on the command line every time.
+
+aws_region         = "us-east-1"
+name_prefix        = "warden-lab"
+monthly_budget_usd = 20
+
+# Uncomment and set to receive the billing alarm by email. You must confirm the
+# SNS subscription from the email AWS sends. Kept out of committed code.
+# alarm_email = "you@example.com"
+
+# Leave false unless you have disabled account-level S3 Block Public Access.
+# When true, the S3 target also gets a public-read bucket policy.
+# make_bucket_public = false
