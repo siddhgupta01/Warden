@@ -5,11 +5,7 @@ variable "aws_region" {
 }
 
 variable "state_bucket_name" {
-  description = <<-EOT
-    Optional explicit name for the state bucket. Leave null to auto-generate
-    a globally-unique name of the form
-    warden-tfstate-<account-id>-<region>.
-  EOT
+  description = "Optional explicit state bucket name. Leave null to auto-generate warden-tfstate-<account-id>-<region>."
   type        = string
   default     = null
 }

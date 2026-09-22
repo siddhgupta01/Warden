@@ -9,7 +9,7 @@ terraform {
   }
 }
 
-# Primary provider — where the Warden lab environment lives.
+# Primary provider: where the Warden lab environment lives.
 provider "aws" {
   region = var.aws_region
 
@@ -22,9 +22,9 @@ provider "aws" {
   }
 }
 
-# Billing metrics (the AWS/Billing namespace) are ONLY published in us-east-1,
-# no matter where your resources actually run. This aliased provider lets the
-# billing alarm live in us-east-1 even if the rest of the lab runs elsewhere.
+# Billing metrics (the AWS/Billing namespace) are only published in us-east-1,
+# regardless of where resources run. This aliased provider lets the billing
+# alarm live in us-east-1 even if the lab runs elsewhere.
 provider "aws" {
   alias  = "us_east_1"
   region = "us-east-1"

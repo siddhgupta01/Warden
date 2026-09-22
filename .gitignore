@@ -1,5 +1,5 @@
-# ---- Terraform ----
-# Never commit state: it contains resource metadata and can contain secrets.
+# Terraform
+# Never commit state; it can contain secrets and resource metadata.
 *.tfstate
 *.tfstate.*
 crash.log
@@ -10,31 +10,29 @@ crash.*.log
 *.tfplan
 plan.out
 
-# Variable files may hold account IDs / secrets. Commit *.example only.
+# Variable files may hold account IDs or secrets. Commit only *.example.
 *.tfvars
 *.tfvars.json
 !*.tfvars.example
 
-# The dependency lock file SHOULD be committed — do not ignore it:
-# .terraform.lock.hcl
+# Keep the dependency lock file (.terraform.lock.hcl) committed.
 
-# Backend config holds the account-ID-bearing bucket name; commit only .example
+# Backend config holds the account-ID-bearing bucket name. Commit only .example.
 backend.hcl
 **/backend.hcl
 !**/backend.hcl.example
 
-# ---- Secrets & credentials ----
+# Secrets and credentials
 .env
 .env.*
 !.env.example
 *.pem
 *.key
-*.pkr.hcl.json
 aws-credentials*
 credentials
 id_rsa*
 
-# ---- Python (agent, later milestones) ----
+# Python (agent, later milestones)
 __pycache__/
 *.py[cod]
 .venv/
@@ -43,7 +41,7 @@ venv/
 .mypy_cache/
 *.egg-info/
 
-# ---- OS / editor ----
+# OS and editor
 .DS_Store
 Thumbs.db
 .idea/
