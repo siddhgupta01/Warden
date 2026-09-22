@@ -1,5 +1,7 @@
 # Warden
 
+![ci](https://github.com/siddhgupta01/Warden/actions/workflows/ci.yml/badge.svg)
+
 An autonomous AI agent that continuously finds and fixes security issues in an
 AWS account, hardened so it cannot be turned into an attacker's foothold.
 
@@ -115,6 +117,21 @@ alarm is applied by the environment module, but AWS only emits the billing
 metric after you enable "Receive Billing Alerts" once in the Billing console.
 Run `terraform destroy` when idle. The backend (S3 and on-demand DynamoDB) and
 the lab targets (no instances) cost effectively nothing at rest.
+
+For the full account setup, see docs/AWS-SETUP.md.
+
+## Development
+
+Checks run locally via pre-commit and in CI on every push and pull request.
+
+```bash
+pip install pre-commit
+pre-commit install          # hooks now run on every commit
+pre-commit run --all-files  # run them on demand
+```
+
+Local hooks and CI cover secret scanning (gitleaks), Terraform formatting, and
+`terraform validate`. See docs/decisions/0004-ci-and-precommit-guardrails.md.
 
 ## License
 
