@@ -1,0 +1,51 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: terraform fmt + validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+
+      - name: fmt (all modules)
+        run: terraform fmt -check -recursive
+
+      # validate does not need AWS credentials or a real backend. -backend=false
+      # lets init run without the S3 backend existing, so this is the real
+      # provider-schema validation gate for every push and PR.
+      - name: validate bootstrap
+        run: |
+          cd terraform/bootstrap
+          terraform init -backend=false
+          terraform validate
+
+      - name: validate environment
+        run: |
+          cd terraform/environment
+          terraform init -backend=false
+          terraform validate
+
+  secrets:
+    name: gitleaks secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
