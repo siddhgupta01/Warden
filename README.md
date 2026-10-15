@@ -54,7 +54,7 @@ changes, and a kill switch.
 | # | Milestone | Status |
 |---|-----------|--------|
 | M0 | Foundation: repo hygiene, billing alarm, Terraform lab env, remote state | code complete (apply pending AWS account setup) |
-| M1 | Detect and remediate MVP (agent opens a Terraform fix PR) | not started |
+| M1 | Detect and remediate MVP: agent detects, maps to CIS/MITRE, reports, builds a dashboard, and opens a remediation PR | complete (offline, tested) |
 | M2 | Containerize and add K8s runtime containment | not started |
 | M3 | Lock down identity (short-lived least-priv creds, blast-radius analysis) | not started |
 | M4 | Attack the agent, then defend it (prompt-injection kill chain) | not started |
