@@ -32,6 +32,15 @@ aws-credentials*
 credentials
 id_rsa*
 
+# Warden-generated local output (reports, dashboards, remediation files) can
+# contain real resource identifiers from a scanned account. Never commit.
+.warden/
+findings.md
+findings.json
+warden-findings*
+dashboard.html
+gitleaks-report*.json
+
 # Python (agent, later milestones)
 __pycache__/
 *.py[cod]
