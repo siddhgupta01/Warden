@@ -37,6 +37,27 @@ jobs:
           terraform init -backend=false
           terraform validate
 
+  agent:
+    name: agent tests (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: install
+        run: |
+          cd agent
+          pip install -e ".[dev]"
+
+      # The suite runs against moto (fake AWS), so no credentials are needed.
+      - name: pytest
+        run: |
+          cd agent
+          pytest -q
+
   secrets:
     name: gitleaks secret scan
     runs-on: ubuntu-latest
